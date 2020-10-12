@@ -1,0 +1,6 @@
+export const appActionsType = {
+  SET_INPUTS_DATA: 'SET_INPUTS_DATA',
+  ADD_FORM: 'ADD_FORM',
+  DELETE_FORM: 'DELETE_FORM',
+  GET_CHARTS_DATA: 'GET_CHARTS_DATA',
+}
