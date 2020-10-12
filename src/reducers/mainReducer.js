@@ -1,65 +1,60 @@
 import {appActionsType} from '../constans'
 
 const initState = {
-  id: 0,
-}
+  data: [],
+  chartData: [],
+};
 
 const mainReducer = (state = initState, action) => {
   
   switch(action.type) {
 
     case appActionsType.SET_INPUTS_DATA: {
-      return {
-        ...state,
-        data: action.data,
-        total: action.total
+      const data = [...state.data];
+      const currentIndex = data.findIndex(item => item.id === action.data.id);
+      if (currentIndex === -1) {
+        data.push(action.data);
+      } else {
+        data[currentIndex] = action.data;
       }
-    }
-
-    case appActionsType.ADD_FORM: {
       return {
         ...state,
-        id: ++state.id,
+        data
       }
     }
 
     case appActionsType.DELETE_FORM: {
-      var data = state.data;
-      data.splice(action.id, 1);
-      for (let i = 0; i < data.length; i++) {
-        data[i][0] = i
-      }
+      const data = [...state.data];
+      console.log({id: action.id, data})
+      const currentIndex = data.findIndex(item => item.id === action.id);
+      data.splice(currentIndex, 1);
+
       return {
         ...state,
-        data,
-        id: --state.id
+        data
       }
     }
 
     case appActionsType.GET_CHARTS_DATA : {
-      var total = 0;
-      for (let i = 0; i < state.data.length; i++) {
-        total+= state.data[i][2]
-      }
-      var elements = [];
-      for (let i = 0; i < state.data.length; i++) {
-        elements.push({name: state.data[i][1], percent: (state.data[i][2] / total * 100).toFixed(0), color: state.data[i][3]})
-      }
-      var pieCharts = {
-        total,
-        elements
-      }
+      const {data} = state;
+      const total = data.reduce((accum, item) => accum + Number(item.value), 0);
+      const chartData = data.map(item => ({
+        name: item.name, 
+        percent: (item.value / total * 100).toFixed(0), 
+        color: item.color,
+        id: item.id
+      }));
+
       return {
         ...state,
-        pieCharts
-      }
+        chartData
+      };
     }
 
     default: {
       return state
     }
   }
-
 }
 
 export default mainReducer;

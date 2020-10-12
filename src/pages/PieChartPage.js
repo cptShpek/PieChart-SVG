@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
-import PieChart from '../components/PieChart'
+import PieChart from '../components/PieChart';
+import BasePage from './BasePage';
 
 class PieChartPage extends Component {
   
   render() {
     return (
-      <PieChart />
+      <BasePage>
+        <PieChart />
+      </BasePage>
     );
   }
 }
