@@ -20,19 +20,18 @@ const mainReducer = (state = initState, action) => {
       return {
         ...state,
         data
-      }
+      };
     }
 
     case appActionsType.DELETE_FORM: {
       const data = [...state.data];
-      console.log({id: action.id, data})
       const currentIndex = data.findIndex(item => item.id === action.id);
       data.splice(currentIndex, 1);
 
       return {
         ...state,
         data
-      }
+      };
     }
 
     case appActionsType.GET_CHARTS_DATA : {
@@ -52,9 +51,9 @@ const mainReducer = (state = initState, action) => {
     }
 
     default: {
-      return state
+      return state;
     }
-  }
+  };
 }
 
 export default mainReducer;

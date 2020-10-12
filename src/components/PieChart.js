@@ -47,7 +47,7 @@ class PieChart extends Component {
     };
 
     return charts;
-  }
+  };
   
   render() {
     const {chartData} = this.props;

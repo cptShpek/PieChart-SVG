@@ -5,15 +5,11 @@ export const setInputsData = (data) => ({
   data
 });
 
-export const deleteForm = (id) => {
-  return {
-    type: appActionsType.DELETE_FORM,
-    id
-  }
-};
+export const deleteForm = (id) => ({
+  type: appActionsType.DELETE_FORM,
+  id
+});
 
-export const getChartsData = () => {
-  return {
-    type: appActionsType.GET_CHARTS_DATA
-  }
-};
+export const getChartsData = () => ({
+  type: appActionsType.GET_CHARTS_DATA
+});
